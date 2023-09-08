@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <meta http-equiv="Content-Type" content="text/html, charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="pico.min.css">
+</head>
+
+<body class="container">
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.getElementById("submit-btn").setAttribute("aria-busy", "true");
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value +
+                '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+
+    <div id="main">
+        <div>
+            <center>
+                <h1 id="wifi_name"></h1>
+                <h2>Login</h2>
+            </center>
+        </div>
+        <!-- <div>
+            <button id="btnvrc" onclick="voucher();"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
+              </svg>
+               Voucher</button>
+            <button id="btnmem" onclick="member();"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+               Member</button>
+        </div> -->
+        <div id="infologin">
+        </div>
+        <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id)
+            onSubmit="return doLogin()" $(endif)>
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+            <input name="username" type="text" value="$(username)" />
+            <input name="password" placeholder="Password" type="hidden" />
+            <button id="submit-btn" type="submit">Login</button>
+        </form>
+        $(if error)<div>$(error)</div>$(endif)
+        <table>
+            <h4>Paket Internet Wifi</h4>
+            <tr>
+                <th>Paket</th>
+                <th>Kecepatan</th>
+                <th>Aktif</th>
+                <th>Harga</th>
+            </tr>
+            <tr>
+                <td>Paket 1</td>
+                <td>± 1 Mbps</td>
+                <td>30 Hari</td>
+                <td>Rp 40.000</td>
+            </tr>
+            <tr>
+                <td>Paket 2</td>
+                <td>± 2 Mbps</td>
+                <td>30 Hari</td>
+                <td>Rp 80.000</td>
+            </tr>
+        </table>
+        <br />
+        <div>Semua paket diatas tidak dikenakan batas penggunaan atau <b>Unlimited</b></div>
+        <br>
+        <div>
+            Sangat disarankan 1 Mbps untuk 1 HP saja, akan tetapi 1 voucher bisa digunakan untuk banyak HP.
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var hostname = window.location.hostname;
+        document.getElementById('wifi_name').innerHTML = window.location.hostname;
+        document.getElementById('title').innerHTML = hostname + " > login";
+
+        document.login.username.focus();
+
+        var infologin = document.getElementById('infologin');
+        infologin.innerHTML = "Masukkan Kode Voucher kemudian klik login.";
+
+        // login page 2 mode by Laksamadi Guko
+        var username = document.login.username;
+        var password = document.login.password;
+
+        username.placeholder = "Kode Voucher";
+
+        // set password = username
+        function setpass() {
+            var user = username.value
+            //user = user.toLowerCase();
+            username.value = user;
+            password.value = user;
+        }
+
+        username.onkeyup = setpass;
+
+        // change to voucher mode
+        function voucher() {
+            username.focus();
+            username.onkeyup = setpass;
+            username.placeholder = "Kode Voucher";
+            username.style = "border-radius:3px;"
+            password.type = "hidden";
+            infologin.innerHTML = "Masukkan Kode Voucher kemudian klik login.";
+        }
+
+        // change to member mode
+        function member() {
+            username.focus();
+            username.onkeyup = "";
+            username.placeholder = "Username";
+            username.style = "border-radius:3px 3px 0px 0px;"
+            password.type = "password";
+            infologin.innerHTML = "Masukkan Username dan Password kemudian klik login.";
+        }
+    </script>
+</body>
+
+</html>
