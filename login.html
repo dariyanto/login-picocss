@@ -59,7 +59,7 @@
             <button id="submit-btn" type="submit">Login</button>
         </form>
         <table>
-            <h4>Paket Internet Wifi</h4>
+            <h4>Paket Internet Bulanan</h4>
             <tr>
                 <th>Paket</th>
                 <th>Kecepatan</th>
@@ -79,18 +79,39 @@
                 <td>Rp 80.000</td>
             </tr>
         </table>
-        <br />
         <div>Semua paket diatas tidak dikenakan batas penggunaan atau <b>Unlimited</b></div>
-        <br>
+        <hr>
+        <table>
+            <h4>Paket Kuota</h4>
+            <tr>
+                <th>Limit</th>
+                <th>Kecepatan</th>
+                <th>Harga</th>
+            </tr>
+            <tr>
+                <td>30 GB</td>
+                <td>± 2 Mbps</td>
+                <td>Rp 30.000</td>
+            </tr>
+            <tr>
+                <td>60 GB</td>
+                <td>± 2 Mbps</td>
+                <td>Rp 60.000</td>
+            </tr>
+        </table>
+        <div>Untuk check status pemakaian, buka Google Chrome dan buka <a class="wifi_name_a"><span class="wifi_name"></span></a></div>
+        <hr>  
         <div>
-            Sangat disarankan 1 Mbps untuk 1 HP saja, akan tetapi 1 voucher bisa digunakan untuk banyak HP.
+            <i><b>Sangat disarankan 1 Mbps untuk 1 HP saja, akan tetapi 1 voucher bisa digunakan untuk banyak HP.</b></i>
         </div>
     </div>
 
 
     <script type="text/javascript">
         var hostname = window.location.hostname;
-        document.getElementById('wifi_name').innerHTML = window.location.hostname;
+        document.getElementsByClassName('wifi_name')[0].innerHTML = hostname;
+        document.getElementsByClassName('wifi_name_a')[0].href = "http://" + hostname;
+        document.getElementById('wifi_name').innerHTML = hostname;
         document.getElementById('title').innerHTML = hostname + " > login";
 
         document.login.username.focus();
