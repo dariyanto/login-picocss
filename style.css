@@ -1,0 +1,60 @@
+/* font sans-serif */
+body {
+    font-family: sans-serif;
+    padding: 1rem;
+    background-color: #b3cde0;
+}
+
+article {
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #a3bed3;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 5px;
+}
+
+table, th, td {
+    border: 1px solid #627481;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* make input runded and add padding to it */
+input {
+    border-radius: 5px;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* make button rounded and full width with color darker from background */
+button {
+    border-radius: 5px;
+    padding: 0.75rem;
+    width: 100%;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+    background-color: #627481;
+    color: #fff;
+    border: none;
+}
